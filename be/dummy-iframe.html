@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PoC FE</title>
+</head>
+<body style="margin: 0; padding: 0;">
+<p>IFrame content to be displayed inside React app.</p>
+<p>
+    <button id="iframe-communication-test">Do something</button>
+</p>
+
+<script>
+  const button = document.getElementById("iframe-communication-test")
+
+  button.addEventListener("click", (event) => {
+    event.preventDefault()
+
+    window.parent.postMessage(
+      {
+        messageFromIframe: "yo!",
+      },
+      "%FRONTEND_APP_HOST%",
+    )
+  })
+</script>
+</body>
+</html>
